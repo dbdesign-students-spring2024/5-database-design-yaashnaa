@@ -24,19 +24,68 @@ The original data set exhibits issues related to 4th Normal Form (4NF) complianc
 
 ## Changes Made for 4NF Compliance
 
-To achieve 4NF compliance, I made the following changes were made:
+To achieve 4NF compliance, I made the following changes:
 
 1. **Identification of Dependencies:**
-   - Recognized functional dependencies and multivalued dependencies within the original data set.
+   - Recognized dependencies within the original data set.
 
 2. **Normalization of Entities:**
    - Each entity (Student, Professor, Course, Section, Classroom, Assignment, Reading) was divided into different tables. 
 
 3. **Introducing Surrogate Keys:**
    - Surrogate keys were introduced where necessary to ensure each table has a primary key.
+   1. **Assignment Entity:**
+   - `assignment_id` in the Assignment Table
+
+2. **Assignment Instance Entity:**
+   - `assignment_instance_id` in the Section Specific Assignment Table
+
+3. **Grade Entity:**
+   - `grade_id` in the Grade Table
+
+4. **Professor Entity:**
+   - `professor_id` in the Professor Table
+
+5. **Student Entity:**
+   - `student_id` in the Student Table
+
+6. **Course Entity:**
+   - `course_code` in the Course Table
+
+7. **Section Entity:**
+   - `section_id` in the Section Table
+
+8. **Classroom Entity:**
+   - `classroom_id` in the Classroom Table
+
+9. **Reading Entity:**
+   - `reading_id` in the Reading Table
+
+
 
 4. **Establishing Relationships:**
    - Foreign keys were defined to establish relationships between entities.
+   1. **Assignment Instance Entity:**
+   - `assignment_id` in the "Section Specific Assignment" Table (Foreign Key referencing Assignment Entity)
+
+2. **Grade Entity:**
+   - `assignment_instance_id` in the Grade Table (Foreign Key referencing Assignment Instance Entity)
+   - `student_id` in the Grade Table (Foreign Key referencing Student Entity)
+
+3. **Professor_Assignment Table:**
+   - `assignment_id` in the Professor_Assignment Table (Foreign Key referencing Assignment Entity)
+   - `professor_email` in the Professor_Assignment Table (Foreign Key referencing Professor Entity)
+
+4. **Reading Entity:**
+   - `assignment_id` in the Reading Table (Foreign Key referencing Assignment Entity)
+
+5. **Section Entity:**
+   - `course_code` in the Section Table (Foreign Key referencing Course Entity)
+   - `professor_id` in the Section Table (Foreign Key referencing Professor Entity)
+
+6. **Classroom Entity:**
+   - No direct foreign keys in the Classroom Table.
+
 
 ## 4NF-Compliant Data Set
 
@@ -53,7 +102,7 @@ To achieve 4NF compliance, I made the following changes were made:
 | 6             | 60FA 201                  | SQL fundamentals                | Atkinson Chapter 7      |
 
 
-### Different assignment Entity 
+### Assignment Instance Entity 
 
 **Section Sprecific Assignment Table:**
 
